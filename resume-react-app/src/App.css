@@ -1,42 +1,76 @@
+*{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 0px;
+  padding: 0px;
+}
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0 auto 0 0;
+  padding: 0;
+  display: grid;
+  grid-template: 1fr / 1fr 3fr;
+}
+
+.sidebar{
+  background-color: #555;
+  color: white;
+  height: min(750px, 100vh);  
+  font-size: 12px;
+  padding: 15px;
+  display: grid;
+  grid-template: repeat(4, 50px) / 1fr;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button{
+  max-height: 50px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.document{
+  background-color: transparent;
+  color: black;
+  height: min(750px, 100vh);
+  max-width: 650px;
+  font-size: 12px;
+  margin: 20px;
+  display: grid;
+  grid-template: 1fr / 1fr 2.5fr;
+}
+
+.leftPanel{
+  background-color: #18212f;
+  color: white;
+  padding: 40px 20px;
+  display: grid;
+  font-size: 16px;
+}
+
+.name{
+  font-weight: bold;
+  font-size: 24px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.rightPanel{
+  background-color: ivory;
+  color: black;
+  padding: 30px;
+  display: grid;
+  grid-template: repeat(3, 1fr) / 1fr;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.documentSectionHeading{
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.documentSectionContent{
+  font-size: 12px;
+  font-weight: 500;
+  padding-left: 20px;
 }
