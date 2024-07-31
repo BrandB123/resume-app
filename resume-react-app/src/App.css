@@ -44,7 +44,7 @@ button{
 .leftPanel{
   background-color: #18212f;
   color: white;
-  padding: 40px 20px;
+  padding: 0px 20px;
   display: grid;
   font-size: 16px;
 }
@@ -53,6 +53,28 @@ button{
   font-weight: bold;
   font-size: 24px;
   text-align: center;
+  border-bottom: solid 2px #555;
+  display: grid;
+  align-items: center;
+}
+
+.contactInfo{
+  border-bottom: solid 2px #555;
+  display: grid;
+  align-items: center;
+}
+
+.informationSection{
+  margin: 20px;
+}
+
+.informationSection>.title{
+  font-weight: bold;
+}
+
+.informationSection>.content{
+  margin-left: 15px;
+  margin-top: 5px;
 }
 
 .rightPanel{
