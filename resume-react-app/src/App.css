@@ -72,7 +72,7 @@ input{
 }
 
 .contactInfo{
-  border-bottom: solid 2px #555;
+  /* border-bottom: solid 2px #555; */
   display: grid;
   align-items: center;
 }
