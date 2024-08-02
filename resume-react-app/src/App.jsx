@@ -2,33 +2,6 @@ import { useState } from 'react'
 import './App.css'
 
 
-// const MOCKDATA = {
-//     name: 'John Smith',
-//     email: 'johnsmith@email.com',
-//     phone: '505-500-5005',
-//     address: '916 N Jefferson St, Carrollton, Mo 64633',
-//     socialMedia: {
-//       github: 'brandb123',
-//       linkedIn: 'johnSmith2024'
-//     },
-//     education: [{
-//       institution: 'University of Testing',
-//       titleOfStudy: 'Bachelors of Arts in Fake Data',
-//       startDate: '2017',
-//       endDate: '2021',
-//     }],
-//     workExperience: [
-//       {employer: 'employer1', position: 'position1', startDate: '2022', endDate: 'present', summary: 'summary1'},
-//       {employer: 'employer2', position: 'position2', startDate: '2019', endDate: '2022', summary: 'summary2'},
-//       {employer: 'employer3', position: 'position3', startDate: '2015', endDate: '2019', summary: 'summary3'}
-//     ],
-//     skills: [
-//       {title: 'Web Development', description: 'Proficient in HMTL, CSS, Javascript, Sveltekit, TypeScript, Express'},
-//       {title: 'Communication', description: 'I can talk with people good :)'}
-//     ]
-// }
-
-
 export default function App() {
   const [userData, setUserData] = useState({
     name: 'John Smith',
@@ -37,30 +10,32 @@ export default function App() {
     address: '123 N Main St, Smithsville, KS 54321',
     education: [{
       institution: 'University of Example',
-      titleOfStudy: 'Bachelors of Arts in Examples',
-      startDate: '1900',
-      endDate: '2000',
+      titleOfStudy: 'Bachelor of Arts in Examples',
+      startDate: '2020',
+      endDate: '2024'
     }],
-    workExperience: [
-      {employer: 'Example Factory', position: 'Cheif Example Officer', startDate: '2022', endDate: 'present', summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe consequuntur dignissimos nostrum expedita in facere ea similique consequatur molestias, ad dolore omnis beatae nobis iste pariatur facilis veritatis. Quibusdam, quos?'}
-    ],
-    skills: [
-      {title: 'Examples', description: 'I have mastered the ability to create examples.'}
-    ]
+    workExperience: [{
+        employer: 'Example Factory', 
+        position: 'Cheif Example Officer', 
+        startDate: '2022', endDate: 'present', 
+        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe consequuntur dignissimos nostrum expedita in facere ea similique consequatur molestias, ad dolore omnis beatae nobis iste pariatur facilis veritatis. Quibusdam, quos?'
+      }],
+    skills: [{
+        title: 'Examples', 
+        description: 'I have mastered the ability to create examples.'
+      }]
   })
 
-  const updateState = (inputField, value, index) => {
-    // handle string or array
+  const updateState = (inputField, value, keyName, index) => {
     const strings = ['name', 'email', 'phone', 'address'];
     if (!strings.includes(inputField)){
-      const newArray = userData[inputField].map((arr, idx) => 
-        idx === index ? { ...arr, ...value } : arr
-      );
-      setUserData({ ...userData, inputField: newArray });
+      const updatedArray = userData[inputField][[index]];
+      updatedArray[keyName] = value;
+      const updatedObject = [ updatedArray ]
+      const nextData = {...userData, inputField: updatedObject}
+      setUserData(nextData);
     } else {
-      console.log(userData)
       const nextUserData = {...userData, [inputField]: value};
-      console.log(nextUserData);
       setUserData(nextUserData);
     }
   }
@@ -89,10 +64,10 @@ function PersonalInformationInput({setState}){
   return(
     <div className='personalInfoInput'>
       <InputDropdownButton title='Personal Information'/>
-      <FormInput label='Name' dataField='name' handleChange={setState}/>
-      <FormInput label='Email' dataField='email' handleChange={setState}/>
-      <FormInput label='Phone' dataField='phone' handleChange={setState}/>
-      <FormInput label='Address' dataField='address' handleChange={setState}/>
+      <FormInput label='Name' dataField='name' handleChange={setState} />
+      <FormInput label='Email' dataField='email' handleChange={setState} />
+      <FormInput label='Phone' dataField='phone' handleChange={setState} />
+      <FormInput label='Address' dataField='address' handleChange={setState} />
     </div>
   );
 }
@@ -102,10 +77,10 @@ function EducationInformationInput({setState}){
   return(
     <div className='educationInput'>
       <InputDropdownButton title='Education Information'/>
-      <FormInput label='School' dataField='education' handleChange={setState} index='0'/>
-      <FormInput label='Degree' dataField='titleOfStudy' handleChange={setState}/>
-      <FormInput label='Start Date' dataField='startDate' handleChange={setState}/>
-      <FormInput label='End Date' dataField='endDate' handleChange={setState}/>
+      <FormInput label='School' dataField='education' handleChange={setState} keyName='institution' index='0'/>
+      <FormInput label='Degree' dataField='education' handleChange={setState} keyName='titleOfStudy' index='0'/>
+      <FormInput label='Start Date' dataField='education' handleChange={setState} keyName='startDate' index='0'/>
+      <FormInput label='End Date' dataField='education' handleChange={setState} keyName='endDate' index='0'/>
       <AddButton />
     </div>
   );
@@ -116,11 +91,11 @@ function WorkInformationInput({setState}){
   return(
     <div className='employmentInput'>
       <InputDropdownButton title='Employment History'/>
-      <FormInput label='Employer' dataField='employer' handleChange={setState}/>
-      <FormInput label='Position' dataField='position' handleChange={setState}/>
-      <FormInput label='Start Date' dataField='startDate' handleChange={setState}/>
-      <FormInput label='End Date' dataField='endDate' handleChange={setState}/>
-      <FormInput label='Summary of Responsibilities' dataField='summary' handleChange={setState}/>
+      <FormInput label='Employer' dataField='workExperience' handleChange={setState} keyName='employer' index='0'/>
+      <FormInput label='Position' dataField='workExperience' handleChange={setState} keyName='position' index='0'/>
+      <FormInput label='Start Date' dataField='workExperience' handleChange={setState} keyName='startDate' index='0'/>
+      <FormInput label='End Date' dataField='workExperience' handleChange={setState} keyName='endDate' index='0'/>
+      <FormInput label='Summary of Responsibilities' dataField='workExperience' handleChange={setState} keyName='summary' index='0'/>
       <AddButton />
     </div>
   );
@@ -131,8 +106,8 @@ function SkillsInput({setState}){
   return(
     <div className='skillInput'>
       <InputDropdownButton title='Skills'/>
-      <FormInput label='Skill' dataField='title' handleChange={setState}/>
-      <FormInput label='Description' dataField='content' handleChange={setState}/>
+      <FormInput label='Skill' dataField='skills' handleChange={setState} keyName='title' index='0'/>
+      <FormInput label='Description' dataField='skills' handleChange={setState} keyName='description' index='0'/>
       <AddButton />
     </div>
   );
@@ -147,14 +122,16 @@ function InputDropdownButton({title, handleClick}){
   );
 }
 
-function FormInput({label, dataField, handleChange, index}){
+
+function FormInput({label, dataField, handleChange, keyName, index}){
   return(
   <form>
     <label htmlFor={label} style={{display: 'block'}}>{ label }</label>
-    <input id={label} onChange={(e) => handleChange(dataField, e.target.value, index)}></input>
+    <input id={label} onChange={(e) => handleChange(dataField, e.target.value, keyName, index)}></input>
   </form>
   );
 }
+
 
 function AddButton({handleClick}){
   return(
